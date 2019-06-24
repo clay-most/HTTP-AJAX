@@ -1,0 +1,1 @@
+//feeds Indiviual friends to FriendsCard and renders them//

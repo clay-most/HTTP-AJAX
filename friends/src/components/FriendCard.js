@@ -1,0 +1,1 @@
+//indiviual friend component builder recives data from state//
