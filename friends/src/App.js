@@ -7,8 +7,8 @@ import axios from 'axios';
 import './App.css';
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       friends: []
     };
@@ -25,8 +25,12 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <FriendsList />
-        <NewFriend />
+        <Route exact path="/">
+          <FriendsList {...props} friends={this.state.friends}/>
+        </Route>
+        <Route exact path="/new">
+          <NewFriend />
+        </Route>
       </div>
     );
   }
