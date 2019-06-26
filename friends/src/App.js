@@ -27,10 +27,14 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Route exact path="/">
-          <FriendsList friends={this.state.friends} />
-        </Route>
-        <Route exact path="/new">
+        <Route
+          exact
+          path="/"
+          render={props => (
+            <FriendsList {...props} friends={this.state.friends} />
+          )}
+        />
+        <Route path="/new">
           <NewFriend />
         </Route>
       </div>
