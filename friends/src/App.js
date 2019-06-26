@@ -1,8 +1,9 @@
 import React from 'react';
+
 import { Route } from 'react-router-dom';
+import axios from 'axios';
 import FriendsList from './components/FriendsList';
 import NewFriend from './components/NewFriend';
-import axios from 'axios';
 
 import './App.css';
 
@@ -14,6 +15,7 @@ class App extends React.Component {
     };
   }
 
+  //fetching data//
   componentDidMount() {
     axios('http://localhost:5000/friends')
       .then(res => this.setState({ friends: res.data }))
@@ -26,7 +28,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Route exact path="/">
-          <FriendsList {...props} friends={this.state.friends}/>
+          <FriendsList friends={this.state.friends} />
         </Route>
         <Route exact path="/new">
           <NewFriend />
