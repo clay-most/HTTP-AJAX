@@ -24,6 +24,32 @@ class App extends React.Component {
       });
   }
 
+  //event handlers//
+  handleAdd = friend => {
+    this.setState({ friend });
+  };
+
+  handleEdit = (name, age, email, id) => {
+    axios
+      .put(`http://localhost:5000/friends/${id}`, {
+        name,
+        age: Number(age)
+      })
+      .then(res => this.setState({ friends: res.data }))
+      .catch(err => {
+        throw new Error(err);
+      });
+  };
+
+  handleDelete = id => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(res => this.setState({ friends: res.data }))
+      .catch(err => {
+        throw new Error(err);
+      });
+  };
+
   render() {
     return (
       <div className="App">
@@ -31,12 +57,19 @@ class App extends React.Component {
           exact
           path="/"
           render={props => (
-            <FriendsList {...props} friends={this.state.friends} />
+            <FriendsList
+              {...props}
+              friends={this.state.friends}
+              edit={this.handleEdit}
+              delete={this.handleDelete}
+            />
           )}
         />
-        <Route path="/new">
-          <NewFriend />
-        </Route>
+
+        <Route
+          path="/new"
+          render={props => <NewFriend {...props} add={this.handleAdd} />}
+        />
       </div>
     );
   }
