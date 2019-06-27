@@ -11,7 +11,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      friends: [],
+      friends: []
     };
   }
 
@@ -24,8 +24,6 @@ class App extends React.Component {
       });
   }
 
-
-
   render() {
     return (
       <div className="App">
@@ -33,17 +31,11 @@ class App extends React.Component {
           exact
           path="/"
           render={props => (
-            <FriendsList
-              {...props}
-              friends={this.state.friends}
-            />
+            <FriendsList {...props} friends={this.state.friends} />
           )}
         />
 
-        <Route
-          path="/new"
-          render={props => <NewFriend {...props}/>}
-        />
+        <Route path="/new" render={props => <NewFriend {...props} />} />
       </div>
     );
   }
