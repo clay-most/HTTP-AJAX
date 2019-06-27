@@ -18,8 +18,6 @@ const FriendsList = props => {
             email={friend.email}
             id={friend.id}
             key={friend.id}
-            edit={props.edit}
-            delete={props.delete}
           />
         ))}
       </div>
