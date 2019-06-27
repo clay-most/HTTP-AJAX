@@ -27,6 +27,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <h1>My Friends</h1>
         <Route
           exact
           path="/"
