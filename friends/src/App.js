@@ -8,8 +8,8 @@ import NewFriend from './components/NewFriend';
 import './App.css';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       friends: []
     };
@@ -17,12 +17,22 @@ class App extends React.Component {
 
   //fetching data//
   componentDidMount() {
-    axios('http://localhost:5000/friends')
-      .then(res => this.setState({ friends: res.data }))
-      .catch(err => {
-        throw new Error(err);
-      });
+    axios.get('http://localhost:5000/friends')
+    .then(response => {
+      this.setState({
+        friends: response.data
+      })
+    })
+    .catch(err => {
+      console.log('Error', err)
+    })
   }
+
+  updateFriends = newFriends => {
+    this.setState({
+      friends: newFriends
+    });
+  };
 
   render() {
     return (
@@ -36,7 +46,10 @@ class App extends React.Component {
           )}
         />
 
-        <Route path="/new" render={props => <NewFriend {...props} />} />
+        <Route
+          path="/new"
+          render={props => <NewFriend {...props} updateFriends={this.updateFriends} />}
+        />
       </div>
     );
   }
